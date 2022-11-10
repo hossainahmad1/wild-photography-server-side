@@ -80,16 +80,15 @@ async function run() {
             res.send(review)
         })
 
-        app.patch('/service/:id', async (req, res) => {
+        app.patch('/update/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) }
+            const text = req.body;
             const updateDoc = {
-                $set: {
-                    
-                }
+                $set: text
             }
-            const result = await serviceCollection.updateOne(query, updateDoc);
-            res.send(result);
+            const result = await serviceCollection.updateOne(query, updateDoc)
+            res.send(result)
         })
 
 
