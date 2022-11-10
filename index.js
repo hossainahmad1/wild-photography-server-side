@@ -46,8 +46,8 @@ async function run() {
             res.send(result)
         })
 
-        
-        
+
+
         // service api
         app.post('/service', async (req, res) => {
             const service = req.body;
@@ -82,12 +82,7 @@ async function run() {
 
         app.patch('/update/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: ObjectId(id) }
-            const text = req.body;
-            const updateDoc = {
-                $set: text
-            }
-            const result = await serviceCollection.updateOne(query, updateDoc)
+            const result = await serviceCollection.updateOne({ _id: ObjectId(id) }, { $set: req.body })
             res.send(result)
         })
 
