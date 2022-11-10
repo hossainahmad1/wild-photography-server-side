@@ -32,6 +32,7 @@ async function run() {
             const review = await cursor.limit(3).toArray()
             res.send(review)
         })
+
         app.get('/review', async (req, res) => {
             const query = {}
             const cursor = reviewCollection.find(query)
@@ -45,7 +46,6 @@ async function run() {
             const result = await reviewCollection.findOne(query)
             res.send(result)
         })
-
 
 
         // service api
@@ -62,11 +62,11 @@ async function run() {
                     serviceid: req.query.serviceid
                 }
             }
-
             const cursor = serviceCollection.find(query)
             const service = await cursor.toArray()
             res.send(service)
         })
+
 
         app.get('/servicemail', async (req, res) => {
             let query = {}
@@ -79,6 +79,7 @@ async function run() {
             const review = await cursor.toArray();
             res.send(review)
         })
+
 
         app.patch('/update/:id', async (req, res) => {
             const id = req.params.id;
@@ -100,13 +101,9 @@ async function run() {
 }
 run().catch(err => console.log(err))
 
-
-
-
 app.get('/', (req, res) => {
     res.send('Review server is running')
 })
-
 
 app.listen(port, () => {
     console.log(`server running on port${port}`)
