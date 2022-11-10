@@ -19,6 +19,7 @@ async function run() {
         const serviceCollection = client.db('reviewDb').collection('service');
 
 
+        // service api start
         app.post('/reviewadd', async (req, res) => {
             const services = req.body;
             const result = await reviewCollection.insertOne(services)
@@ -46,9 +47,10 @@ async function run() {
             const result = await reviewCollection.findOne(query)
             res.send(result)
         })
+        // service api end
 
 
-        // service api
+        // review api start
         app.post('/service', async (req, res) => {
             const service = req.body;
             const result = await serviceCollection.insertOne(service);
@@ -94,12 +96,13 @@ async function run() {
             const result = await serviceCollection.deleteOne(query)
             res.send(result)
         })
+        // review api end
     }
     finally {
-
     }
 }
 run().catch(err => console.log(err))
+
 
 app.get('/', (req, res) => {
     res.send('Review server is running')
