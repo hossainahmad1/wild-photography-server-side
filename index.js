@@ -46,14 +46,14 @@ async function run() {
             res.send(result)
         })
 
-
+        
+        
         // service api
         app.post('/service', async (req, res) => {
             const service = req.body;
             const result = await serviceCollection.insertOne(service);
             res.send(result)
         })
-
 
         app.get('/service', async (req, res) => {
             let query = {}
@@ -90,9 +90,6 @@ async function run() {
             const result = await serviceCollection.updateOne(query, updateDoc)
             res.send(result)
         })
-
-
-
 
 
         app.delete('/service/:id', async (req, res) => {
